@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event propogation</title>
+    <style>
+        #button{
+                background-color: rebeccapurple;
+        }
+        #outer{
+            background-color: aqua;
+            width: 250px;
+            height: 250px;
+        }
+        #middle{
+             background-color: rgb(27, 29, 29);
+            width: 200px;
+            height: 200px;
+        }
+        #inner{
+             background-color: red;
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id ="outer">
+        <div id ="middle">
+            <button id ="inner">click</button>
+        </div>
+    </div>
+    <script>
+        let outer =document.querySelector('#outer')
+        let middle =document.querySelector('#middle')
+        let inner =document.querySelector('#inner')
+
+        outer.addEventListener('click',function(event){
+            alert('outer div')
+            event.stopPropagation()
+        })
+                middle.addEventListener('click',function(event){
+            alert('middle div')
+            event.stopPropagation()
+        })
+                inner.addEventListener('click',function(){
+            alert('inner div')
+            event.stopPropagation()
+        })
+        // ider agar true likha toh parent se child aur false hua toh child to parent
+        // bubbling face when flase or captruing face when true
+
+    </script>
+</body>
+</html>

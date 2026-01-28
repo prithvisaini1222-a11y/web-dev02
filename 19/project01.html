@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        #container{
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(211, 244, 90);
+            padding: 20px;
+            border-radius: 20px;
+        }
+        input{
+            font-size: 2rem;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: none;
+            background-color: azure;
+        }
+        #btncontainer{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+
+        }
+        #btncontainer>*{
+            width:80px ;
+            border: none;
+            padding: 10px;
+            font-size: 1.5rem;
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:active{
+                transform: scale(0.9);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id= "container">
+        <input type="text" name="" id="display" disabled>
+        <div id="btncontainer">
+        <button>AC</button>
+        <button>DLT</button>
+        <button>/</button>
+        <button>*</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>-</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>+</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>%</button>
+        <button>00</button>
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+     </div>
+    </div>
+
+    <script>
+        let inp = document.querySelector('#display');
+        let btn = document.querySelector('#btncontainer');
+        
+        let arr = ['AC','DLT','/','*','7','8','9','-','4','5','6','+',
+                   '1','2','3','%','00','0','.','='];
+        
+        function calc(event){
+            let value = event.target.innerText;
+        
+            if(!arr.includes(value)) return;
+        
+            if(value === 'AC'){
+                inp.value = "";
+                return;
+            }
+        
+            if(value === 'DLT'){
+                inp.value = inp.value.slice(0, -1);
+                return;
+            }
+        
+            if(value === '='){
+                
+                    inp.value = eval(inp.value);
+           
+                return;
+            }
+        
+            inp.value += value;
+        }
+        
+        btn.addEventListener('click', calc);
+        
+
+    </script>
+</body>
+</html>

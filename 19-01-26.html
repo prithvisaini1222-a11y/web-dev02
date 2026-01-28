@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+    </ul>
+    <button>add list item</button>
+    <script>
+        let arr=["apple",banana, mango]  
+        let list=document.querySelector("ul");
+        let btn=document.querySelector("button")
+        let count=0;
+        
+        function addlistitem(){
+            if(count<arr.length)
+            {
+                let li =document.createElement("li")
+                li.innerText=arr[count]
+                list.append(li)
+                count=count + 1;
+             }
+             else{
+                btn.removeEventListener("click",addlistitem)
+             }
+             console.log(hello);
+        }
+        btn.addEventListener("click",addlistitem)
+        </script>
+</body>
+</html>

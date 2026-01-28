@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: aquamarine;
+            color: maroon;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading" class="conatiner">Hello</h1>
+    <h1 id="heading" class="headClass">Hello</h1>
+    <h1 id="heading" class="headClass">Hello World</h1>
+    <h1 id="heading" class="headClass">Hello</h1>
+    
+    <p>Para</p>
+    <script>
+       let head =  document.querySelectorAll('h1')
+
+    //    head.textContent = `Hello 
+
+    // head.style.backgroundColor = "red"
+
+    // head.classList.remove('container')
+    // head.classList.replace('conatiner','abc')
+
+    head.forEach((items,idx)=>{
+        if(idx==2)
+    {
+        console.log(head[idx]);
+        
+    }
+    })
+
+    let abc = [...head].filter((element,idx)=>idx==2);
+  
+       console.log(abc);
+       
+       
+       
+       
+      
+      
+       
+      
+
+
+       
+
+
+    </script>
+</body>
+</html>

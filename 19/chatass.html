@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Event Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(120deg,#5a3ae8,rgb(210, 54, 80),#b650f1);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.dashboard{
+    width:90%;
+    max-width:1100px;
+    background:#d9e6e9;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.top{
+    display:flex;
+    gap:20px;
+}
+
+.form-card{
+    width:30%;
+    background:#f8f9fd;
+    padding:15px;
+    border-radius:12px;
+}
+
+.form-card h2{
+    color:#6d2398;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    margin-top:12px;
+    padding:8px;
+    width:100%;
+    border:none;
+    border-radius:8px;
+    background:#5c10a3;
+    color:white;
+    cursor:pointer;
+}
+
+.events-card{
+    flex:1;
+    background:#f8f9fd;
+    padding:15px;
+    border-radius:12px;
+}
+
+#btns-container{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+#btns-container button{
+    flex:1;
+    background:linear-gradient(90deg,#3d43b9,#ab4fb5);
+}
+
+#event-handling-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+
+.event-card{
+    background:linear-gradient(135deg,#eef2f8,#dfe7f3);
+    border-radius:14px;
+    padding:15px;
+    position:relative;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.event-card h4{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.event-date{
+    font-size:14px;
+    color:#555;
+}
+
+.badge{
+    display:inline-block;
+    background:#5b6ee1;
+    color:white;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    margin:8px 0;
+}
+
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:#815bff;
+    border:none;
+    color:white;
+    width:33px;
+    height:32px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+
+.empty-text{
+    grid-column:1/-1;
+    text-align:center;
+    color:#777;
+}
+
+.dom-demo{
+    margin-top:20px;
+    background:#f8f9fd;
+    padding:12px;
+    border-radius:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+<h1>😎 Smart Event Dashboard</h1>
+
+<div class="top">
+    <div class="form-card">
+        <h2>Add New Event</h2>
+        <form>
+            <label>Event Title</label>
+            <input type="text" id="event-title">
+
+            <label>Event Date</label>
+            <input type="date" id="event-date">
+
+            <label>Category</label>
+            <select id="event-category">
+                    <option>Conference</option>
+                    <option>Webinar</option>
+                    <option>Social</option>
+                    <option>Workshop</option>
+                    <option>Meetup</option>
+            </select>
+
+            <label>Description</label>
+            <textarea id="event-description"></textarea>
+
+            <button type="submit">Add Event</button>
+        </form>
+    </div>
+
+    <div class="events-card">
+        <h2>My Events</h2>
+        <div id="btns-container">
+            <button id="clear-button">Clear All Events</button>
+            <button id="add-sample">Add Sample Events</button>
+        </div>
+
+        <div id="event-handling-container">
+            <div class="empty-text">No events yet. Add your first event!</div>
+        </div>
+    </div>
+</div>
+
+<div class="dom-demo">
+    <h3>DOM Manipulation Demo</h3>
+    <input type="text" id="key-output" value="Press any key">
+</div>
+</div>
+
+<script>
+let form = document.querySelector('form')
+let eventtitle = document.querySelector('#event-title')
+let eventdate = document.querySelector('#event-date')
+let eventcategory = document.querySelector('#event-category')
+let eventdescription = document.querySelector('#event-description')
+let clearbtn = document.querySelector('#clear-button')
+let addsample = document.querySelector('#add-sample')
+let container = document.querySelector("#event-handling-container")
+
+function removeEmptyText(){
+    let empty = document.querySelector(".empty-text")
+    if(empty) empty.remove()
+}
+
+function createEventCard(title,date,category,desc){
+    removeEmptyText()
+
+    let card = document.createElement("div")
+    card.className="event-card"
+    card.innerHTML=`
+        <button class="close-btn" onclick="this.parentElement.remove()">❌</button>
+        <h4>${title}</h4>
+        <div class="event-date">📅 ${date}</div>
+        <div class="badge">${category}</div>
+        <p>${desc}</p>
+    `
+    container.append(card)
+}
+
+form.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    createEventCard(
+        eventtitle.value,
+        eventdate.value,
+        eventcategory.value,
+        eventdescription.value
+    )
+    form.reset()
+})
+
+clearbtn.addEventListener("click",()=>{
+    container.innerHTML=`<div class="empty-text">No events yet. Add your first event!</div>`
+})
+
+addsample.addEventListener("click",()=>{
+    createEventCard("Web Development Conference","2026-02-15","Conference","Annual conference on modern web technologies.")
+    createEventCard("JavaScript Workshop","2026-02-20","Workshop","Hands-on JavaScript learning session.")
+})
+
+let keyOutput=document.querySelector("#key-output")
+document.addEventListener("keydown",(e)=>{
+    keyOutput.value="You pressed: " + e.key
+})
+</script>
+
+</body>
+</html>

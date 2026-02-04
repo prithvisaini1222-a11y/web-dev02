@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log('start cooking....')
+
+        function boilwater(callback){
+            console.log('boiling water....')
+            setTimeout(()=>{                  
+                console.log('water boiled');
+                callback();
+            },10000)
+        }
+
+        function addmaggi(callback){
+            console.log('adding maggi....')
+                setTimeout(()=>{
+                    console.log('maggi added');
+                    callback()
+                },5000)
+            }
+             
+          function addmasala(callback){
+            console.log('adding masala....')
+            setTimeout(()=>{
+                console.log('adding masala...');
+                callback();
+            },3000)
+        }   
+          function serve(){
+            console.log('serve and eat')
+          }
+            
+        
+
+        boilwater(()=>{              //arrow function  jab bhi koi argument le toh ese likhte hai
+            addmaggi(()=>{  
+                addmasala(()=>{
+                    serve()
+                })
+            })
+        })
+
+        // boilwater(addmaggi(addmasala(serve())))  call back function use kiya hai toh arrow function use krna hai
+
+
+    </script>
+</body>
+</html>

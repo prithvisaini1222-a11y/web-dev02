@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Event Dashboard</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background: linear-gradient(120deg,#5a3ae8,rgb(210, 54, 80),#b650f1);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .dashboard{
+            width:90%;
+            max-width:1100px;
+            background:#f5f7fa;
+            border-radius:12px;
+            padding:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        .top{
+            display:flex;
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:10px;
+            padding:15px;
+            flex:1;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h2{
+            margin-bottom:10px;
+            color:#5228b4;
+        }
+
+        label{
+            display:block;
+            margin-top:10px;
+            font-size:14px;
+        }
+
+        input, select, textarea{
+            width:100%;
+            padding:8px;
+            margin-top:5px;
+            border-radius:6px;
+            border:1px solid #ccc;
+        }
+
+        textarea{
+            resize:none;
+            height:60px;
+        }
+
+        button{
+            margin-top:12px;
+            padding:8px 14px;
+            border:none;
+            border-radius:6px;
+            background:#5228b4;
+            color:white;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#2f55c0;
+        }
+
+        #btns-container{
+            display:flex;
+            gap:10px;
+            margin-bottom:10px;
+        }
+
+        #event-handling-container div{
+            background:#eef1f6;
+            padding:10px;
+            border-radius:8px;
+            margin-bottom:8px;
+            position:relative;
+        }
+
+        #event-handling-container button{
+            position:absolute;
+            right:10px;
+            top:10px;
+            background:red;
+            padding:2px 6px;
+        }
+
+        .dom-demo{
+            margin-top:20px;
+            background:white;
+            padding:12px;
+            border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+        }
+        .addsample{
+            color: #b650f1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <h1>😎 Smart Event Dashboard</h1>
+
+    <div class="top">
+
+        <div class="card">
+            <h2>Add New Event</h2>
+            <form>
+                <label>Event Title</label>
+                <input type="text" id="event-title">
+
+                <label>Event Date</label>
+                <input type="date" id="event-date">
+
+                <label>Category</label>
+                <select id="event-category">
+                    <option>Conference</option>
+                    <option>Webinar</option>
+                    <option>Social</option>
+                    <option>Workshop</option>
+                    <option>Meetup</option>
+                </select>
+
+                <label>Description</label>
+                <textarea id="event-description"></textarea>
+
+                <button type="submit">Add Event</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>My Events</h2>
+            <div id="btns-container">
+                <button id="clear-button">Clear All</button>
+                <button id="add-sample">Add Sample</button>
+            </div>
+            <div id="event-handling-container">
+                No events yet. Add your first event!
+            </div>
+        </div>  
+    </div>
+
+    <div class="dom-demo">
+        <h3>DOM Manipulation Demo</h3>
+        <input type="text" id="key-output" value="Press any key">
+    </div>
+</div>
+
+<script>
+    let form = document.querySelector('form')
+    let eventtitle=document.querySelector('#event-title')
+    let eventdate=document.querySelector('#event-date')
+    let eventcategory=document.querySelector('#event-category')
+    let eventdescription=document.querySelector('#event-description')
+    let clearbtn=document.querySelector('#clear-button')
+    let addsample=document.querySelector('#add-sample')
+    let eventhandlingcontainer=document.querySelector("#event-handling-container")
+
+    function createEvent(e){
+        e.preventDefault()
+
+        let card= document.createElement('div');
+        card.innerHTML=`
+            <button onclick="this.parentElement.remove()">X</button>
+            <h4>${eventtitle.value}</h4>
+            <span>${eventdate.value}</span><br>
+            <span>${eventcategory.value}</span>
+            <p>${eventdescription.value}</p>
+        `
+        eventhandlingcontainer.append(card);
+
+        form.reset()
+    }
+
+    form.addEventListener('submit',createEvent)
+
+    clearbtn.addEventListener('click',()=>{
+        eventhandlingcontainer.innerHTML="No events yet. Add your first event!"
+    })
+
+    addsample.addEventListener('click',()=>{
+        eventhandlingcontainer.innerHTML+=`
+        <div >
+            <button onclick="this.parentElement.remove()">X</button>
+            <h4>AI Workshop</h4>
+            <span>2026-02-10</span><br>
+            <span>Workshop</span>
+            <p>Learn AI basics</p>
+        </div>
+        
+         <div>
+            <button onclick="this.parentElement.remove()">X</button>
+            <h4>AI Workshop</h4>
+            <span>2026-02-10</span><br>
+            <span>Workshop</span>
+            <p>Learn AI basics</p>
+        </div>`
+
+        
+    })
+
+    let keyOutput=document.querySelector("#key-output")
+    document.addEventListener("keydown",(e)=>{
+        keyOutput.value="You pressed: " + e.key
+    })
+</script>
+
+</body>
+</html>

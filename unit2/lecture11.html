@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💪promises</title>
+</head>
+<body>
+    <script>
+    console.log('start cooking...')
+
+        function boilwater(){
+            return new Promise((resolve)=>{ 
+                console.log('boiling water ...')
+                setTimeout(()=>{
+                    console.log('water boiled')
+                    resolve();
+                },10000)
+            })
+        }
+
+        function addmaggi(){
+            return new Promise((resolve)=>{ 
+                console.log('add maggi ...')
+                setTimeout(()=>{
+                    console.log('maggi added')
+                    resolve();
+                },6000)
+            })
+        }
+
+        function addmasala(){
+            return new Promise((resolve)=>{ 
+                console.log('add masala ...')
+                setTimeout(()=>{
+                    console.log('masala added')
+                    resolve();
+                },3000)
+            })
+        }
+
+        function serve(){
+            console.log('serve and eat')
+        }
+
+        // boilwater()
+        // .then(addmaggi)
+        // .then(addmasala)
+        // .then(serve)
+        // .catch(()=>{
+        //     console.log('something went wrong')
+        // })
+
+        async function cookmaggi(){       //async{use}:- syncronous ko aysncronous krte hai iss function ko use krne ke liye aur simple easy way mein krne ke liye async likh dete hai function ke pehle
+            await boilwater();
+            await addmaggi();
+            await addmasala();
+            serve();
+
+        }
+
+
+        cookmaggi()
+    </script>
+</body>
+</html>

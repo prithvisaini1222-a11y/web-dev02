@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function sendproduct() {
+            let respone = await fetch('https://dummyjson.com/products/add', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    title: 'BMW Pencil',
+    descriptio:'hello section f',
+    brand:"krmu",
+    class:'lab 20'
+    
+  })
+})
+let data = await respone.json()
+console.log(data)
+}
+sendproduct()
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cart = ["laptop", "mobile","earphone"]
+
+        function createorder(cart,callback){
+            console.log("order created for:",cart)
+            setTimeout(()=>{
+                let orderid=1234
+                callback(orderid)
+            },5000)
+        }
+
+        function makepayment(orderid,callback){
+            console.log('making payment for:',orderid)
+            setTimeout(()=>{
+                let ui=10-1
+                callback(ui)
+            },3000)
+        }
+
+        function updateinventory(ui,callback){
+            console.log("inventory update:",ui);
+            setTimeout(()=>{
+                let message="success"
+                console.log(message);
+            })
+        }
+        function orderstatus(message){
+            console.log("order status:",message)
+        }
+
+        createorder(cart,function(orderid){
+            makepayment(orderid,function(ui){
+                updateinventory(ui,function(message){
+                    orderstatus(message)
+                })
+            })
+
+        })
+        // drawbacks of callback
+        // callback hell (premet of doow) 2. difficulty in error handling 3. code become complex 4.inversion of control(jab ek function dusre function pe depend hota h invok ke liye)
+    </script>
+</body>
+</html>

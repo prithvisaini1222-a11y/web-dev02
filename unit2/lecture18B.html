@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator</title>
+</head>
+<body>
+    <script>
+        function* trafficlight(){
+            yield "red"
+
+            yield "yellow"
+             
+            yield "green"
+        }
+        let a = trafficlight()
+
+        a.next()
+        console.log(a.next().done)
+        a.next()
+        console.log(a.next())
+        // console.log(a.next())
+        // console.log(a.next())
+        // console.log(a.next())
+        // console.log(a.next())
+
+        
+
+    </script>
+</body>
+</html>

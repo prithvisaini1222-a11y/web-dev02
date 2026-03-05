@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //     let flag = true;
+    // let wada= new Promise((resolve,reject)=>{             // promise contain 3 state <1st pending>
+    //         if(flag===true){
+    //             resolve("haan betaaaa")
+    //         }else{
+    //             reject("kya hua tera wada")
+    //         }
+    //     })
+    //     // console.log(wada)
+    //    //<2nd resolve={handle karne ke liye }.then> <3rd reject={handle krne ke live taki neeche koi uncaught wali error na aaye}.catch>
+    //     wada.then(result=> console.log(result)).catch(error=>console.log(error))
+
+
+
+    // let time = -2;
+    // let wada = new Promise((resolve,reject)=>{
+    //     if (time<=10 ){
+    //         resolve("hostel open")
+    //     }else{
+    //         reject("hotel closed")
+    //     }
+    // })
+    // wada.then(result=> console.log(result)).catch(error=>console.log(error))
+
+    // let flag = laptop;                      //array.input
+    let arr=["laptop","mobile","tv","frige","ac"]
+    let abc=prompt("enter value")
+    let item= new Promise((resolve,reject)=>{
+        if(arr.includes(abc)){
+            resolve("available")
+        }else{
+            reject("not available")
+        }
+    }) 
+    
+
+    item.then(result=> console.log(result)).catch(error=>console.log(error))
+
+
+                                         
+
+
+
+
+
+    </script>
+</body>
+</html>

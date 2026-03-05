@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function homework(){
+        //     return new Promise((resolve,reject)=>{
+        //         let didhomework= true;
+        //         setTimeout(()=>{
+        //             if(didhomework){
+        //                 resolve("homework done")
+        //             }else{
+        //                 reject("homework incomplete")
+        //             }
+
+        //         },5000)
+        //     })
+        // }
+        
+        //  homework().then(result=>console.log(result)).catch(error=>console.log(error))
+    //    let temp= homework()
+    //    console.log(temp)
+    function marks(){
+        return new Promise((resolve,reject)=>{
+         
+        let hello= prompt("enter your marks")
+        setTimeout(()=>{
+                if(hello>=33 && hello>=0 && hello<=100){
+                    resolve('pass hogo raaaaaaaaaaa')
+                }else{
+                    reject("fail hogo ab hosi thukai")
+                }
+        },2000)
+        })
+    }
+    marks().then(result=>console.log(result)).catch(error=>console.log(error))
+
+
+    </script>
+</body>
+</html>
